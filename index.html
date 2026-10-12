@@ -99,30 +99,35 @@
     const questions = [
       {
         q: "Which articles of the Indian Constitution deal with Fundamental Rights?",
-        options: ["Articles 12 to 35", "Articles 36 to 51",
-                  "Articles 52 to 78", "Articles 79 to 122"],
-        answer: 0
+options: ["Articles 12 to 35", "Articles 36 to 51",
+          "Articles 52 to 78", "Articles 79 to 122"],
+answer: 0,
+explanation: "Fundamental Rights are covered under Part III of the Indian Constitution, Articles 12 to 35."
       },
       {
         q: "What is the SI unit of force?",
         options: ["Joule", "Newton", "Watt", "Pascal"],
-        answer: 1
+answer: 1,
+explanation: "The newton (N) is the SI unit of force. One newton produces an acceleration of 1 m/s² in a 1 kg mass."
       },
       {
         q: "Which planet is known as the Red Planet?",
         options: ["Venus", "Jupiter", "Mars", "Mercury"],
-        answer: 2
+answer: 2,
+explanation: "Mars is called the Red Planet because iron minerals in its surface soil produce a reddish appearance."
       },
       {
         q: "Who is known as the Father of the Indian Constitution?",
         options: ["Mahatma Gandhi", "Jawaharlal Nehru",
                   "Dr. B. R. Ambedkar", "Sardar Patel"],
-        answer: 2
+answer: 2,
+explanation: "Dr. B. R. Ambedkar chaired the Drafting Committee of the Indian Constitution and played a major role in preparing the draft."
       },
       {
         q: "What is the chemical symbol for gold?",
         options: ["Ag", "Fe", "Au", "Go"],
-        answer: 2
+        answer: 2,
+explanation: "The chemical symbol for gold is Au, derived from the Latin word aurum."
       },
 
     {
@@ -427,15 +432,18 @@
         if (i === item.answer) button.classList.add("correct");
       });
 
-      if (index === item.answer) {
-        score++;
-        feedback.textContent = "Correct answer! Well done.";
-      } else {
-        buttons[index].classList.add("wrong");
-        feedback.textContent =
-          `Incorrect. Correct answer: ${item.options[item.answer]}`;
-      }
-
+if (index === item.answer) {
+  score++;
+  feedback.textContent =
+    "Correct! " + (item.explanation || "Well done!");
+} else {
+  buttons[index].classList.add("wrong");
+  feedback.textContent =
+    "Incorrect. Correct answer: " +
+    item.options[item.answer] +
+    ". " +
+    (item.explanation || "Review this topic and try again.");
+}
       scoreText.textContent = `Score: ${score}`;
       bar.style.width = `${(current + 1) / questions.length * 100}%`;
       next.disabled = false;
